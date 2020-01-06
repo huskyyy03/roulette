@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="roulette.css">
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script>
+            $(function(){
+                var l = $('table td').length;
+                var timerId, rand, remove;
+                
+                $('#start').on('click', function() {
+                    start.disabled = true;
+                    timerId=setInterval(function() {
+                        $('.blightOn').addClass('clightOn');
+                        l = $('table td').length;
+                        l = $('table td').not('.alightOn').not('.blightOn').not('.clightOn').length;
+                        // l = $('table td.alightOn').length;
+                        // l = $('table td.blightOn').length;
+                        // l = $('table td.clightOn').length;
+                        rand = Math.floor(Math.random() * l);
+                        $('table td').removeClass('alightOn');
+                        $('table td').not('.alightOn').not('.blightOn').not('.clightOn').eq(rand).addClass('alightOn');
+                    }, 200);
+                });
+                
+                $('#stop').on('click', function() {
+                    clearInterval(timerId);
+                    // $('table td').removeClass('alightOn');
+                    $('.alightOn').removeClass('alightOn').addClass('blightOn');
+                    if ($('table td').not('.alightOn').not('.clightOn').length > 0) {
+                        start.disabled = false;
+                    } else {
+                        start.disabled = true;
+                    }
+                });
+                
+                $('#reset').on('click', function() {
+                    clearInterval(timerId);
+                    start.disabled = false;
+                    $('table td').removeClass('alightOn').removeClass('blightOn').removeClass('clightOn');
+                });
+            });
+            </script>
+    </head>
+    <body>
+        <table>
+            <tr><td>1</td><td>2</td><td>3</td><td>4</td></tr>
+            <tr><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+            <tr><td>9</td><td>10</td><td>11</td><td>12</td></tr>
+            <tr><td>13</td><td>14</td><td>15</td><td>16</td></tr>
+        </table>
+        <p>
+            <input type="button" value="スタート" id="start">
+            <input type="button" value="ストップ" id="stop">
+            <input type="button" value="リセット" id="reset">
+        </p>
+    </body>
+</html>

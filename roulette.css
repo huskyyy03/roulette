@@ -1,0 +1,27 @@
+table {
+    border: solid 3px;
+    margin: 0 auto;
+}
+
+td {
+    border: solid 2px;
+    padding: 10px;
+    font-size: 20px;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+.alightOn {
+    background-color: #FF3300;
+}
+
+.blightOn {
+    background-color: #FF9900;
+}
+
+.clightOn {
+    background-color: #FFFF99;
+}
